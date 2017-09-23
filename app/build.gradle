@@ -16,6 +16,7 @@
 
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.apollographql.android'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -95,6 +96,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
 
     implementation 'com.jakewharton.timber:timber:4.5.1'
+    implementation 'com.apollographql.apollo:apollo-rx2-support:0.4.1'
 
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"

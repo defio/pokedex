@@ -1,0 +1,8 @@
+query PokemonsQuery {
+	pokemons(first: 151) {
+		id
+		number
+		name
+		image
+	}
+}

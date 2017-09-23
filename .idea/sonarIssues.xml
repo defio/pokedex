@@ -13,6 +13,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.gitignore">
           <value>
             <set />
@@ -34,6 +39,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/graphql/com/nicoladefiorenze/pokedex/Pokemons.graphql">
           <value>
             <set />
           </value>
@@ -94,6 +104,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/nicoladefiorenze/pokedex/inject/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/nicoladefiorenze/pokedex/remote/PokemonRemoteProvider.kt">
           <value>
             <set />
           </value>
