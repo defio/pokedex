@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex
 
 import android.support.test.InstrumentationRegistry
@@ -22,7 +21,7 @@ import android.support.test.runner.AndroidJUnit4
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 
 /**
  * Instrumented test, which will execute on an Android device.
