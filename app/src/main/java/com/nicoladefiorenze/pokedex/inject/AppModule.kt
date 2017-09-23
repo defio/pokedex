@@ -13,20 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.inject
 
-import android.app.Application
 import android.content.Context
 import com.nicoladefiorenze.pokedex.PokeApplication
 import dagger.Module
 import javax.inject.Singleton
 import dagger.Provides
 
-
-
 @Module
-class AppModule{
+class AppModule {
 
     @Provides
     fun provideContext(application: PokeApplication): Context {

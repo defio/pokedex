@@ -15,13 +15,30 @@
  */
 package com.nicoladefiorenze.pokedex
 
+import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+/**
+ * Base Activity class which supports LifecycleOwner and Dagger injection.
+ */
+abstract class PokeActivity : AppCompatActivity() {
+
+    private var lifecycleRegistry: LifecycleRegistry? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        lifecycleRegistry = LifecycleRegistry(this)
     }
+
+    override fun getLifecycle(): LifecycleRegistry {
+        return lifecycleRegistry!!
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycleRegistry = null
+    }
+
 }

@@ -13,19 +13,20 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
+package com.nicoladefiorenze.pokedex.home
 
-import com.nicoladefiorenze.pokedex.PokeApplication
-import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import javax.inject.Singleton
+import android.os.Bundle
+import com.nicoladefiorenze.pokedex.PokeActivity
+import com.nicoladefiorenze.pokedex.R
 
-@Singleton
-@Component(modules = arrayOf(AndroidSupportInjectionModule::class, AppModule::class))
-interface AppComponent : AndroidInjector<PokeApplication> {
+class HomeActivity : PokeActivity() {
 
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<PokeApplication>()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.home_content, HomeFragment())
+                .commit()
+    }
 }

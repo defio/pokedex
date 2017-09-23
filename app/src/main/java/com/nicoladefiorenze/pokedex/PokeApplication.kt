@@ -21,12 +21,10 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
 
-
 class PokeApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -45,6 +43,5 @@ class PokeApplication : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.builder().create(this)
     }
-
 
 }
