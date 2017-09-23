@@ -82,6 +82,9 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.5.1'
 
 
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakcanary}"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
