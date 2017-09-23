@@ -38,3 +38,4 @@ captures/
 google-services.json
 
 /.idea/sonarlint/
+/.idea/sonarIssues.xml
