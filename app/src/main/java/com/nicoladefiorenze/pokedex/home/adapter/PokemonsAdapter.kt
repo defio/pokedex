@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.home.adapter
 
 import android.support.v7.widget.RecyclerView
@@ -23,7 +22,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.nicoladefiorenze.pokedex.R
 import kotlinx.android.synthetic.main.pokemon_item.view.*
-
 
 class PokemonsAdapter : RecyclerView.Adapter<PokemonsAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: PokemonsAdapter.ViewHolder, position: Int) {

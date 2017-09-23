@@ -20,15 +20,8 @@ import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import timber.log.Timber
-import okhttp3.OkHttpClient
-import com.apollographql.apollo.ApolloClient
-
-
-
-
 
 class PokeApplication : DaggerApplication() {
-
 
     override fun onCreate() {
         super.onCreate()

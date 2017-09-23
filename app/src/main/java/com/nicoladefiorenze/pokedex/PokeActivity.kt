@@ -19,7 +19,6 @@ import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
-import dagger.android.support.DaggerAppCompatActivity
 
 /**
  * Base Activity class which supports LifecycleOwner and Dagger injection.

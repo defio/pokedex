@@ -13,10 +13,8 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.remote
 
-import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx2.Rx2Apollo
@@ -26,7 +24,6 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import timber.log.Timber
 
-
 class PokemonRemoteProvider {
 
     private val okHttpClient = OkHttpClient.Builder()
@@ -35,11 +32,8 @@ class PokemonRemoteProvider {
             .serverUrl(BASE_URL)
             .okHttpClient(okHttpClient)
             .build()
-    private var pokemonCall: ApolloCall<PokemonsQuery.Pokemon>? = null
-
 
     fun getPokemons() {
-
         Rx2Apollo.from(apolloClient.query(PokemonsQuery.builder().build()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -48,7 +42,6 @@ class PokemonRemoteProvider {
                 }, {
                     Timber.e(it)
                 })
-
 
     }
 
