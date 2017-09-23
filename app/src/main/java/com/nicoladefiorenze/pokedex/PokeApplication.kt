@@ -15,14 +15,18 @@
  */
 package com.nicoladefiorenze.pokedex
 
-import android.app.Application
+import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import timber.log.Timber
 
-class PokeApplication : Application() {
+
+class PokeApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -37,5 +41,10 @@ class PokeApplication : Application() {
         }
 
     }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().create(this)
+    }
+
 
 }

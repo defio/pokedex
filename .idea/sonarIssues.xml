@@ -53,6 +53,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/nicoladefiorenze/pokedex/inject/AppComponent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/nicoladefiorenze/pokedex/inject/AppModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/test/java/com/nicoladefiorenze/pokedex/ExampleUnitTest.kt">
           <value>
             <set />
@@ -64,6 +74,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../tivi/app/build.gradle">
           <value>
             <set />
           </value>
