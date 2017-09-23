@@ -9,9 +9,12 @@ jobs:
       JVM_OPTS: -Xmx3072m -Djava.util.concurrent.ForkJoinPool.common.parallelism=2
     steps:
       - checkout
-      
+
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
       - run:
           name: Download Dependencies
           command: ./gradlew dependencies --no-daemon
