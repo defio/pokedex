@@ -18,7 +18,6 @@ package com.nicoladefiorenze.pokedex
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.nicoladefiorenze.pokedex.inject.DaggerNetworkComponent
 import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 
 /**
@@ -31,8 +30,6 @@ abstract class PokeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleRegistry = LifecycleRegistry(this)
-
-
 
 //        PokemonRemoteProvider().getPokemons()
     }

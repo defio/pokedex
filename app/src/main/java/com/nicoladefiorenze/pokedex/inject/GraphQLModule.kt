@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.inject
 
 import com.apollographql.apollo.ApolloClient
@@ -21,7 +20,6 @@ import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
 
 @Module(includes = arrayOf(NetworkModule::class))
 class GraphQLModule {
