@@ -16,16 +16,17 @@
 
 package com.nicoladefiorenze.pokedex.inject
 
-import android.content.Context
-import com.nicoladefiorenze.pokedex.PokeApplication
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 
 @Module
-class AppModule {
+class NetworkModule {
 
     @Provides
-    fun provideContext(application: PokeApplication): Context {
-        return application.applicationContext
-    }
+    fun okHttpClient(): OkHttpClient = OkHttpClient.Builder()
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .build()
 }

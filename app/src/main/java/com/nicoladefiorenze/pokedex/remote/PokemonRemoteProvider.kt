@@ -23,15 +23,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import timber.log.Timber
+import javax.inject.Inject
 
 class PokemonRemoteProvider {
 
-    private val okHttpClient = OkHttpClient.Builder()
-            .build()
-    private var apolloClient: ApolloClient = ApolloClient.builder()
-            .serverUrl(BASE_URL)
-            .okHttpClient(okHttpClient)
-            .build()
+    @Inject lateinit var okHttpClient: OkHttpClient
+    @Inject lateinit var apolloClient: ApolloClient
 
     fun getPokemons() {
         Rx2Apollo.from(apolloClient.query(PokemonsQuery.builder().build()))
@@ -45,8 +42,5 @@ class PokemonRemoteProvider {
 
     }
 
-    companion object {
-        private val BASE_URL = "https://graphql-pokemon.now.sh"
-    }
 
 }

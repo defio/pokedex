@@ -16,16 +16,12 @@
 
 package com.nicoladefiorenze.pokedex.inject
 
-import android.content.Context
-import com.nicoladefiorenze.pokedex.PokeApplication
-import dagger.Module
-import dagger.Provides
+import com.apollographql.apollo.ApolloClient
+import dagger.Component
+import okhttp3.OkHttpClient
 
-@Module
-class AppModule {
+@Component(modules = arrayOf(GraphQLModule::class))
+interface GraphQLComponent {
 
-    @Provides
-    fun provideContext(application: PokeApplication): Context {
-        return application.applicationContext
-    }
+    fun getApolloClient(): ApolloClient
 }

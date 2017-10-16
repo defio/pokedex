@@ -16,16 +16,23 @@
 
 package com.nicoladefiorenze.pokedex.inject
 
-import android.content.Context
-import com.nicoladefiorenze.pokedex.PokeApplication
+import com.apollographql.apollo.ApolloClient
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 
-@Module
-class AppModule {
+@Module(includes = arrayOf(NetworkModule::class))
+class GraphQLModule {
 
     @Provides
-    fun provideContext(application: PokeApplication): Context {
-        return application.applicationContext
+    fun getApolloClient(okHttpClient: OkHttpClient): ApolloClient = ApolloClient.builder()
+            .serverUrl(GraphQLModule.BASE_URL)
+            .okHttpClient(okHttpClient)
+            .build()
+
+    companion object {
+        private val BASE_URL = "https://graphql-pokemon.now.sh"
     }
 }

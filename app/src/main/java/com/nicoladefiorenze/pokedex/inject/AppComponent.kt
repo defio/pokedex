@@ -13,19 +13,22 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
+
 package com.nicoladefiorenze.pokedex.inject
 
 import com.nicoladefiorenze.pokedex.PokeApplication
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import javax.inject.Singleton
 
-@Singleton
-@Component(modules = arrayOf(AndroidSupportInjectionModule::class, AppModule::class))
+@Component(modules = arrayOf(AndroidInjectionModule::class,
+        AppModule::class,
+        GraphQLModule::class))
 interface AppComponent : AndroidInjector<PokeApplication> {
 
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<PokeApplication>()
 
+    fun inject(pokemonRemoteProvider: PokemonRemoteProvider)
 }
