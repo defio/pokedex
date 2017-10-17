@@ -13,15 +13,21 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex
+package com.nicoladefiorenze.pokedex.inject
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import com.nicoladefiorenze.pokedex.PokeApplication
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 
-class MainActivity : AppCompatActivity() {
+@Component(modules = arrayOf(AndroidInjectionModule::class,
+        AppModule::class,
+        GraphQLModule::class))
+interface AppComponent : AndroidInjector<PokeApplication> {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+    @Component.Builder
+    abstract class Builder : AndroidInjector.Builder<PokeApplication>()
+
+    fun inject(pokemonRemoteProvider: PokemonRemoteProvider)
 }

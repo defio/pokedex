@@ -32,11 +32,12 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
 
+        classpath 'com.apollographql.apollo:gradle-plugin:0.4.1'
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.7.3'
     }
 }
