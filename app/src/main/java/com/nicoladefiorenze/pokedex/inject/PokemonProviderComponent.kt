@@ -14,4 +14,18 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.inject
+
+import com.nicoladefiorenze.pokedex.redux.FetchPokemonMiddleware
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import dagger.Component
+
+@Component(modules = arrayOf(PokemonProviderModule::class))
+interface PokemonProviderComponent {
+
+    fun getPokemonProvider(): PokemonRemoteProvider
+
+    fun inject(fetchPokemonMiddleware: FetchPokemonMiddleware)
+
+
+}

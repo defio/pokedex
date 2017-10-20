@@ -16,6 +16,9 @@
 package com.nicoladefiorenze.pokedex
 
 import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
+import com.nicoladefiorenze.pokedex.redux.PokeStore
+import com.nicoladefiorenze.pokedex.redux.home.INIT
+import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
@@ -33,6 +36,11 @@ class PokeApplication : DaggerApplication() {
         }
 
         LeakCanary.install(this)
+
+        val store = PokeStore().createStore()
+
+        store.dispatch(INIT())
+        store.dispatch(POKEMONS_FETCH)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

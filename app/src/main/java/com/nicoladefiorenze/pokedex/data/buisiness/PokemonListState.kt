@@ -14,4 +14,12 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.data.buisiness
+
+import com.brianegan.bansa.Action
+
+enum class PokemonListState : Action{
+    NOT_FETCHED,
+    FETCHING,
+    FETCHED
+}

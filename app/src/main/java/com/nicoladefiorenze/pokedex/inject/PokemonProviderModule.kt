@@ -14,4 +14,17 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.inject
+
+import com.apollographql.apollo.ApolloClient
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import dagger.Module
+import dagger.Provides
+
+@Module(includes = arrayOf(GraphQLModule::class))
+class PokemonProviderModule {
+
+    @Provides
+    fun getPokemonProvider(apolloClient: ApolloClient): PokemonRemoteProvider = PokemonRemoteProvider(apolloClient)
+
+}

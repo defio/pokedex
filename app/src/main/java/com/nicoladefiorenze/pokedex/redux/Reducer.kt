@@ -14,4 +14,19 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.redux
+
+import com.brianegan.bansa.Action
+import com.brianegan.bansa.Reducer
+import com.nicoladefiorenze.pokedex.redux.home.INIT
+
+class Reducer: Reducer<ApplicationState>{
+
+    override fun reduce(state: ApplicationState, action: Action): ApplicationState {
+        return when(action){
+            is INIT -> action.initialState
+            else -> state
+        }
+    }
+
+}

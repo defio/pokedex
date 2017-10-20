@@ -14,4 +14,13 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.example.redux
+
+import io.reactivex.disposables.Disposable
+
+interface Store<S> {
+    fun getState(): S
+    fun dispatch(action: Action)
+    fun subcribe(disposable: Disposable)
+    fun unsubcribe(disposable: Disposable)
+}

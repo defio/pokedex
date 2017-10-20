@@ -19,26 +19,20 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.rx2.Rx2Apollo
 import com.nicoladefiorenze.pokedex.PokemonsQuery
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import javax.inject.Inject
 
-class PokemonRemoteProvider {
+class PokemonRemoteProvider(val apolloClient: ApolloClient) {
 
-    @Inject lateinit var okHttpClient: OkHttpClient
-    @Inject lateinit var apolloClient: ApolloClient
 
-    fun getPokemons() {
-        Rx2Apollo.from(apolloClient.query(PokemonsQuery.builder().build()))
+    fun getPokemons(): Observable<Response<PokemonsQuery.Data>> {
+        return Rx2Apollo.from(apolloClient.query(PokemonsQuery.builder().build()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response: Response<PokemonsQuery.Data>? ->
-                    Timber.d(response.toString())
-                }, {
-                    Timber.e(it)
-                })
 
     }
 

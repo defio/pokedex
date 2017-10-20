@@ -14,4 +14,8 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.data.buisiness
+
+data class PokemonAbstract(val id: Int = 0,
+                           val name: String = "",
+                           val imageUrl: String = "")

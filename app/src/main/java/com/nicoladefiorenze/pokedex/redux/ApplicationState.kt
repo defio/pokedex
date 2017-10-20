@@ -14,4 +14,10 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.redux
+
+import com.nicoladefiorenze.pokedex.data.buisiness.PokemonAbstract
+import com.nicoladefiorenze.pokedex.data.buisiness.PokemonListState
+
+data class ApplicationState(val pokemonListState: PokemonListState = PokemonListState.NOT_FETCHED,
+                            val pokemonList: List<PokemonAbstract> = emptyList())

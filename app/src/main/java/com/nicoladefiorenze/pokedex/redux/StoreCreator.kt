@@ -14,4 +14,10 @@
  *    limitations under the License.
  */
 
-include ':app'
+package com.nicoladefiorenze.pokedex.redux
+
+import com.brianegan.bansa.BaseStore
+
+
+
+

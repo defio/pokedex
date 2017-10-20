@@ -29,5 +29,4 @@ interface AppComponent : AndroidInjector<PokeApplication> {
     @Component.Builder
     abstract class Builder : AndroidInjector.Builder<PokeApplication>()
 
-    fun inject(pokemonRemoteProvider: PokemonRemoteProvider)
 }
