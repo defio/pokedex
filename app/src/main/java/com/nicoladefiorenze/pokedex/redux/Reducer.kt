@@ -18,15 +18,43 @@ package com.nicoladefiorenze.pokedex.redux
 
 import com.brianegan.bansa.Action
 import com.brianegan.bansa.Reducer
+import com.nicoladefiorenze.pokedex.PokemonsQuery
+import com.nicoladefiorenze.pokedex.data.buisiness.PokemonAbstract
+import com.nicoladefiorenze.pokedex.data.buisiness.PokemonListState
 import com.nicoladefiorenze.pokedex.redux.home.INIT
+import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_ERROR
+import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_FULLFILED
+import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHING
 
-class Reducer: Reducer<ApplicationState>{
+class Reducer : Reducer<ApplicationState> {
 
     override fun reduce(state: ApplicationState, action: Action): ApplicationState {
-        return when(action){
+        return when (action) {
             is INIT -> action.initialState
+            is POKEMONS_FETCHING -> state.copy(pokemonListState = PokemonListState.FETCHING)
+            is POKEMONS_FETCHED_ERROR -> state.copy(pokemonListState = PokemonListState.FETCHED_ERROR)
+            is POKEMONS_FETCHED_FULLFILED -> state.copy(pokemonListState = PokemonListState.FETCHED_FULFILLED,
+                    pokemonList = action.data?.toPokemonAbstractList() ?: emptyList())
             else -> state
         }
     }
 
 }
+
+private fun List<PokemonsQuery.Pokemon>.toPokemonAbstractList(): List<PokemonAbstract> {
+    return this.filter {
+        val retrievedName = it.name()
+        val retrievedNumber = it.number()
+        val retrievedImage = it.image()
+
+        retrievedImage != null && retrievedName != null && retrievedNumber!=null
+    }.map {
+        val retrievedNumber = it.number()!!
+        val retrievedName = it.name()!!
+        val retrievedImage = it.image()!!
+
+        PokemonAbstract(retrievedNumber.toInt(), retrievedName, retrievedImage)
+    }
+}
+
+

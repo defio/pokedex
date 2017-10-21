@@ -15,6 +15,7 @@
  */
 package com.nicoladefiorenze.pokedex
 
+import com.brianegan.bansa.Subscriber
 import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
 import com.nicoladefiorenze.pokedex.redux.PokeStore
 import com.nicoladefiorenze.pokedex.redux.home.INIT
@@ -39,8 +40,14 @@ class PokeApplication : DaggerApplication() {
 
         val store = PokeStore().createStore()
 
+        val subscription = store.subscribe {
+            System.out.println("-------------------")
+            System.out.println("New State: $it")
+        }
+
         store.dispatch(INIT())
         store.dispatch(POKEMONS_FETCH)
+
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

@@ -21,5 +21,6 @@ import com.brianegan.bansa.Action
 enum class PokemonListState : Action{
     NOT_FETCHED,
     FETCHING,
-    FETCHED
+    FETCHED_FULFILLED,
+    FETCHED_ERROR,
 }
