@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.data.buisiness
 
 data class PokemonAbstract(val id: Int = 0,

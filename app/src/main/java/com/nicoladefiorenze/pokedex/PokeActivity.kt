@@ -18,7 +18,6 @@ package com.nicoladefiorenze.pokedex
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 
 /**
  * Base Activity class which supports LifecycleOwner and Dagger injection.

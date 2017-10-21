@@ -16,7 +16,6 @@
 package com.nicoladefiorenze.pokedex.inject
 
 import com.nicoladefiorenze.pokedex.PokeApplication
-import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector

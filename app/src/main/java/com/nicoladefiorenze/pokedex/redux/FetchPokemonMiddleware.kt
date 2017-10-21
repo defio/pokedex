@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.redux
 
 import com.apollographql.apollo.api.Response
@@ -39,13 +38,13 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
     @Inject lateinit var pokemonProvider: PokemonRemoteProvider
 
     override fun dispatch(store: com.brianegan.bansa.Store<ApplicationState>, action: Action, next: NextDispatcher) {
-        when(action){
-            is POKEMONS_FETCH-> {
+        when (action) {
+            is POKEMONS_FETCH -> {
                 val currentTimeMillis = System.currentTimeMillis()
                 next.dispatch(POKEMONS_FETCHING)
                 pokemonProvider.getPokemons()
                         .subscribe({ response: Response<PokemonsQuery.Data>? ->
-                            Timber.d("Pokemons fetched ${response.toString()}")
+                            Timber.d("Pokemons fetched $response")
                             next.dispatch(POKEMONS_FETCHED_FULLFILED(response?.data()?.pokemons()))
                             Timber.d("Pokemons fetched in : ${System.currentTimeMillis()-currentTimeMillis} millis")
                         }, {

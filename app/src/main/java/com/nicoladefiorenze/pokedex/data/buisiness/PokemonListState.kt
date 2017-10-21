@@ -13,12 +13,11 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.data.buisiness
 
 import com.brianegan.bansa.Action
 
-enum class PokemonListState : Action{
+enum class PokemonListState : Action {
     NOT_FETCHED,
     FETCHING,
     FETCHED_FULFILLED,

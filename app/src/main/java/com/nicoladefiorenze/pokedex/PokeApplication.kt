@@ -15,7 +15,6 @@
  */
 package com.nicoladefiorenze.pokedex
 
-import com.brianegan.bansa.Subscriber
 import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
 import com.nicoladefiorenze.pokedex.redux.PokeStore
 import com.nicoladefiorenze.pokedex.redux.home.INIT
@@ -47,7 +46,6 @@ class PokeApplication : DaggerApplication() {
 
         store.dispatch(INIT())
         store.dispatch(POKEMONS_FETCH)
-
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

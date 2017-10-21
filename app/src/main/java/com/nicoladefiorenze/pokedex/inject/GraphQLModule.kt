@@ -16,7 +16,6 @@
 package com.nicoladefiorenze.pokedex.inject
 
 import com.apollographql.apollo.ApolloClient
-import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

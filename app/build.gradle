@@ -55,7 +55,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+
+
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -98,11 +103,14 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.5.1'
     implementation 'com.apollographql.apollo:apollo-rx2-support:0.4.1'
 
-    implementation 'com.github.brianegan.bansa:bansa:1.0.0-beta'
-    implementation 'com.github.brianegan.bansa:bansaKotlin:1.0.0-beta'
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakcanary}"
+
+    implementation "com.github.brianegan.bansa:bansa:${versions.bansa}"
+    implementation "com.github.brianegan.bansa:bansaKotlin:${versions.bansa}"
+    debugImplementation "com.github.brianegan.bansa:bansaDevTools:${versions.bansa}"
+    debugImplementation "com.github.brianegan.bansa:bansaDevToolsUi:${versions.bansa}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1', {

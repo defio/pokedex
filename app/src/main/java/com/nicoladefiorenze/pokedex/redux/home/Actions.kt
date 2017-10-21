@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.redux.home
 
 import com.brianegan.bansa.Action
