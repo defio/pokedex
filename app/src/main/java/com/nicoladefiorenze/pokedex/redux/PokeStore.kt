@@ -24,7 +24,7 @@ class PokeStore : Store<ApplicationState> {
 
     fun createStore(): BaseStore<ApplicationState> {
         val reducer = Reducer()
-        this.instance = BaseStore(ApplicationState(), reducer, FetchPokemonMiddleware())
+        this.instance = BaseStore(ApplicationState(), reducer, FetchPokemonMiddleware(),LoggingMiddleware())
         return instance
     }
 

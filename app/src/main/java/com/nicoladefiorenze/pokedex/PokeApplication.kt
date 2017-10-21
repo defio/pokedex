@@ -28,6 +28,7 @@ class PokeApplication : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        plantTimber()
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -40,17 +41,20 @@ class PokeApplication : DaggerApplication() {
         val store = PokeStore().createStore()
 
         val subscription = store.subscribe {
-            System.out.println("-------------------")
-            System.out.println("New State: $it")
+//            System.out.println("-------------------")
+//            System.out.println("New State: $it")
         }
 
         store.dispatch(INIT())
         store.dispatch(POKEMONS_FETCH)
 
+
+    }
+
+    private fun plantTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

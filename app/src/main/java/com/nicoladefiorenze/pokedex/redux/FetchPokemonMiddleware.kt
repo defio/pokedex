@@ -40,6 +40,7 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
     override fun dispatch(store: com.brianegan.bansa.Store<ApplicationState>, action: Action, next: NextDispatcher) {
         when (action) {
             is POKEMONS_FETCH -> {
+                next.dispatch(action)
                 val currentTimeMillis = System.currentTimeMillis()
                 next.dispatch(POKEMONS_FETCHING)
                 pokemonProvider.getPokemons()
