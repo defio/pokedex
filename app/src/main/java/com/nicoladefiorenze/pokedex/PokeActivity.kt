@@ -30,7 +30,6 @@ abstract class PokeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         lifecycleRegistry = LifecycleRegistry(this)
 
-//        PokemonRemoteProvider().getPokemons()
     }
 
     override fun getLifecycle(): LifecycleRegistry {

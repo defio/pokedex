@@ -15,9 +15,7 @@
  */
 package com.nicoladefiorenze.pokedex.data.buisiness
 
-import com.brianegan.bansa.Action
-
-enum class PokemonListState : Action {
+enum class PokemonListState  {
     NOT_FETCHED,
     FETCHING,
     FETCHED_FULFILLED,

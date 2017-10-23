@@ -16,9 +16,6 @@
 package com.nicoladefiorenze.pokedex.redux
 
 import com.apollographql.apollo.api.Response
-import com.brianegan.bansa.Action
-import com.brianegan.bansa.Middleware
-import com.brianegan.bansa.NextDispatcher
 import com.nicoladefiorenze.pokedex.PokemonsQuery
 import com.nicoladefiorenze.pokedex.inject.DaggerPokemonProviderComponent
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
@@ -26,6 +23,9 @@ import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_ERROR
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_FULLFILED
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHING
 import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import redux.api.Dispatcher
+import redux.api.Store
+import redux.api.enhancer.Middleware
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -37,7 +37,8 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
 
     @Inject lateinit var pokemonProvider: PokemonRemoteProvider
 
-    override fun dispatch(store: com.brianegan.bansa.Store<ApplicationState>, action: Action, next: NextDispatcher) {
+
+    override fun dispatch(store: Store<ApplicationState>, next: Dispatcher, action: Any): Any {
         when (action) {
             is POKEMONS_FETCH -> {
                 next.dispatch(action)
@@ -47,7 +48,7 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
                         .subscribe({ response: Response<PokemonsQuery.Data>? ->
                             Timber.d("Pokemons fetched $response")
                             next.dispatch(POKEMONS_FETCHED_FULLFILED(response?.data()?.pokemons()))
-                            Timber.d("Pokemons fetched in : ${System.currentTimeMillis()-currentTimeMillis} millis")
+                            Timber.d("Pokemons fetched in : ${System.currentTimeMillis() - currentTimeMillis} millis")
                         }, {
                             Timber.e(it)
                             next.dispatch(POKEMONS_FETCHED_ERROR)
@@ -55,6 +56,8 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
             }
             else -> next.dispatch(action)
         }
-
+        return action
     }
+
+
 }

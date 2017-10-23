@@ -16,8 +16,6 @@
 
 package com.nicoladefiorenze.pokedex.redux
 
-import com.brianegan.bansa.BaseStore
-
 
 
 

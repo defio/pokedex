@@ -16,12 +16,16 @@
 package com.nicoladefiorenze.pokedex
 
 import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
-import com.nicoladefiorenze.pokedex.redux.PokeStore
-import com.nicoladefiorenze.pokedex.redux.home.INIT
+import com.nicoladefiorenze.pokedex.redux.ApplicationState
+import com.nicoladefiorenze.pokedex.redux.FetchPokemonMiddleware
+import com.nicoladefiorenze.pokedex.redux.Reducer
+import com.nicoladefiorenze.pokedex.redux.createLoggerMiddleware
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import redux.applyMiddleware
+import redux.createStore
 import timber.log.Timber
 
 class PokeApplication : DaggerApplication() {
@@ -38,17 +42,9 @@ class PokeApplication : DaggerApplication() {
 
         LeakCanary.install(this)
 
-        val store = PokeStore().createStore()
+        val store = createStore(Reducer(), ApplicationState(), applyMiddleware(FetchPokemonMiddleware(), createLoggerMiddleware()))
 
-        val subscription = store.subscribe {
-//            System.out.println("-------------------")
-//            System.out.println("New State: $it")
-        }
-
-        store.dispatch(INIT())
         store.dispatch(POKEMONS_FETCH)
-
-
     }
 
     private fun plantTimber() {

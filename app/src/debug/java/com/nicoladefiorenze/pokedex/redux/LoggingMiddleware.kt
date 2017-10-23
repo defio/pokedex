@@ -16,24 +16,32 @@
 
 package com.nicoladefiorenze.pokedex.redux
 
-import com.brianegan.bansa.Action
-import com.brianegan.bansa.Middleware
-import com.brianegan.bansa.NextDispatcher
-import com.brianegan.bansa.Store
+import redux.api.Dispatcher
+import redux.api.Store
+import redux.api.enhancer.Middleware
 import timber.log.Timber
 
-class LoggingMiddleware: Middleware<ApplicationState> {
-    override fun dispatch(store: Store<ApplicationState>, action: Action, next: NextDispatcher) {
+//class LoggingMiddleware: Middleware<ApplicationState> {
+//    override fun dispatch(store: Store<ApplicationState>, action: Action, next: NextDispatcher) {
+//
+//    }
+//}
+
+fun createLoggerMiddleware(): Middleware<ApplicationState> {
+    return Middleware { store: Store<ApplicationState>, next: Dispatcher, action: Any ->
+
         val actionCanonicalName = action.javaClass.simpleName
         val prevState = store.state
         next.dispatch(action)
         val curState = store.state
         Timber.d("""
-            +-------------------
-            |  action : $actionCanonicalName
-            |  prev state: $prevState
-            |  current state: $curState
-            +-------------------
-        """.trimIndent())
+                +-------------------
+                |  action : $actionCanonicalName
+                |  prev state: $prevState
+                |  current state: $curState
+                +-------------------
+            """.trimIndent())
+
+        action
     }
 }

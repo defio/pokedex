@@ -15,12 +15,9 @@
  */
 package com.nicoladefiorenze.pokedex.redux.home
 
-import com.brianegan.bansa.Action
 import com.nicoladefiorenze.pokedex.PokemonsQuery
-import com.nicoladefiorenze.pokedex.redux.ApplicationState
 
-data class INIT(val initialState: ApplicationState = ApplicationState()) : Action
-object POKEMONS_FETCH : Action
-object POKEMONS_FETCHING : Action
-data class POKEMONS_FETCHED_FULLFILED(val data: MutableList<PokemonsQuery.Pokemon>?) : Action
-object POKEMONS_FETCHED_ERROR : Action
+object POKEMONS_FETCH
+object POKEMONS_FETCHING
+data class POKEMONS_FETCHED_FULLFILED(val data: MutableList<PokemonsQuery.Pokemon>?)
+object POKEMONS_FETCHED_ERROR

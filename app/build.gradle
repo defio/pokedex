@@ -107,10 +107,7 @@ dependencies {
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${versions.leakcanary}"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakcanary}"
 
-    implementation "com.github.brianegan.bansa:bansa:${versions.bansa}"
-    implementation "com.github.brianegan.bansa:bansaKotlin:${versions.bansa}"
-    debugImplementation "com.github.brianegan.bansa:bansaDevTools:${versions.bansa}"
-    debugImplementation "com.github.brianegan.bansa:bansaDevToolsUi:${versions.bansa}"
+    implementation "com.github.pardom:redux-kotlin:${versions.reduxKotlin}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1', {
