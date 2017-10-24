@@ -21,8 +21,7 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 
 @Component(modules = arrayOf(AndroidInjectionModule::class,
-        AppModule::class,
-        GraphQLModule::class))
+        AppModule::class))
 interface AppComponent : AndroidInjector<PokeApplication> {
 
     @Component.Builder
