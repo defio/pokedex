@@ -18,8 +18,10 @@ package com.nicoladefiorenze.pokedex.inject.redux
 import com.nicoladefiorenze.pokedex.redux.ApplicationState
 import dagger.Component
 import redux.api.Store
+import javax.inject.Singleton
 
 @Component(modules = arrayOf(ReduxModule::class))
+@Singleton
 interface ReduxComponent {
 
     fun getStore(): Store<ApplicationState>

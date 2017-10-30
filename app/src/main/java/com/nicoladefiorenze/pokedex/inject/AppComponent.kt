@@ -20,11 +20,13 @@ import com.nicoladefiorenze.pokedex.inject.redux.ReduxModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
+import javax.inject.Singleton
 
 @Component(modules = arrayOf(AndroidInjectionModule::class,
         AppModule::class,
         ActivityBuilder::class,
         ReduxModule::class))
+@Singleton
 interface AppComponent : AndroidInjector<PokeApplication> {
 
     @Component.Builder

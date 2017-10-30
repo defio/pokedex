@@ -21,7 +21,6 @@ import com.nicoladefiorenze.pokedex.R
 import com.nicoladefiorenze.pokedex.redux.ApplicationState
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
 import redux.api.Store
-import timber.log.Timber
 import javax.inject.Inject
 
 class HomeActivity : PokeActivity() {

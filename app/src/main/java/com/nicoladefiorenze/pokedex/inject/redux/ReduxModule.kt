@@ -26,22 +26,26 @@ import dagger.Provides
 import redux.api.Store
 import redux.applyMiddleware
 import redux.createStore
+import javax.inject.Singleton
 
 @Module(includes = arrayOf(PokemonProviderModule::class))
 class ReduxModule {
 
     @Provides
+    @Singleton
     fun getStore(reducers: Reducer, initialState: ApplicationState, enhancer: Store.Enhancer<ApplicationState>): Store<ApplicationState> {
         return createStore(reducers, initialState, enhancer)
     }
 
     @Provides
+    @Singleton
     fun getMiddleware(pokemonRemoteProvider: PokemonRemoteProvider) = applyMiddleware(FetchPokemonMiddleware(pokemonRemoteProvider), createLoggerMiddleware())
 
     @Provides
     fun getInitialState() = ApplicationState()
 
     @Provides
+    @Singleton
     fun getReducer() = Reducer()
 
 }
