@@ -24,15 +24,12 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
           
       - run:
-          name: Assemble APKs
+          name: Assemble debug
           command: ./gradlew assembleDebug --no-daemon
       - store_artifacts:
           path: app/build/outputs/apk
           destination: apks
 
-      - run:
-          name: Check
-          command: ./gradlew check --no-daemon
       - store_artifacts:
           path: app/build/reports
           destination: reports
