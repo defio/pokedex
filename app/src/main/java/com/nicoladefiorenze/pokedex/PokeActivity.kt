@@ -18,6 +18,7 @@ package com.nicoladefiorenze.pokedex
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import dagger.android.AndroidInjection
 
 /**
  * Base Activity class which supports LifecycleOwner and Dagger injection.
@@ -28,6 +29,7 @@ abstract class PokeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidInjection.inject(this)
         lifecycleRegistry = LifecycleRegistry(this)
 
     }

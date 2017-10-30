@@ -25,7 +25,6 @@ import io.reactivex.schedulers.Schedulers
 
 class PokemonRemoteProvider(val apolloClient: ApolloClient) {
 
-
     fun getPokemons(): Observable<Response<PokemonsQuery.Data>> {
         return Rx2Apollo.from(apolloClient.query(PokemonsQuery.builder().build()))
                 .subscribeOn(Schedulers.io())

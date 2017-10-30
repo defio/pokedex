@@ -17,10 +17,11 @@ package com.nicoladefiorenze.pokedex.inject
 
 import android.content.Context
 import com.nicoladefiorenze.pokedex.PokeApplication
+import com.nicoladefiorenze.pokedex.home.HomeActivityComponent
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(subcomponents = arrayOf(HomeActivityComponent::class))
 class AppModule {
 
     @Provides

@@ -13,7 +13,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
 package com.nicoladefiorenze.pokedex.redux
 
 import com.nicoladefiorenze.pokedex.PokemonsQuery
@@ -35,7 +34,6 @@ class Reducer : redux.api.Reducer<ApplicationState> {
         }
     }
 
-
 }
 
 private fun List<PokemonsQuery.Pokemon>.toPokemonAbstractList(): List<PokemonAbstract> {
@@ -53,5 +51,4 @@ private fun List<PokemonsQuery.Pokemon>.toPokemonAbstractList(): List<PokemonAbs
         PokemonAbstract(retrievedNumber.toInt(), retrievedName, retrievedImage)
     }
 }
-
 

@@ -13,44 +13,35 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex
+package com.nicoladefiorenze.pokedex.inject.redux
 
-import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
+import com.nicoladefiorenze.pokedex.inject.PokemonProviderModule
 import com.nicoladefiorenze.pokedex.redux.ApplicationState
 import com.nicoladefiorenze.pokedex.redux.FetchPokemonMiddleware
 import com.nicoladefiorenze.pokedex.redux.Reducer
 import com.nicoladefiorenze.pokedex.redux.createLoggerMiddleware
-import com.squareup.leakcanary.LeakCanary
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import dagger.Module
+import dagger.Provides
+import redux.api.Store
 import redux.applyMiddleware
 import redux.createStore
-import timber.log.Timber
 
-class PokeApplication : DaggerApplication() {
+@Module(includes = arrayOf(PokemonProviderModule::class))
+class ReduxModule {
 
-    override fun onCreate() {
-        super.onCreate()
-        plantTimber()
-
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return
-        }
-
-        LeakCanary.install(this)
-
+    @Provides
+    fun getStore(reducers: Reducer, initialState: ApplicationState, enhancer: Store.Enhancer<ApplicationState>): Store<ApplicationState> {
+        return createStore(reducers, initialState, enhancer)
     }
 
-    private fun plantTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
-    }
+    @Provides
+    fun getMiddleware(pokemonRemoteProvider: PokemonRemoteProvider) = applyMiddleware(FetchPokemonMiddleware(pokemonRemoteProvider), createLoggerMiddleware())
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().create(this)
-    }
+    @Provides
+    fun getInitialState() = ApplicationState()
+
+    @Provides
+    fun getReducer() = Reducer()
 
 }

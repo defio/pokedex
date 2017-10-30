@@ -18,8 +18,15 @@ package com.nicoladefiorenze.pokedex.home
 import android.os.Bundle
 import com.nicoladefiorenze.pokedex.PokeActivity
 import com.nicoladefiorenze.pokedex.R
+import com.nicoladefiorenze.pokedex.redux.ApplicationState
+import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
+import redux.api.Store
+import timber.log.Timber
+import javax.inject.Inject
 
 class HomeActivity : PokeActivity() {
+
+    @Inject lateinit var store: Store<ApplicationState>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +35,10 @@ class HomeActivity : PokeActivity() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.home_content, HomeFragment())
                 .commit()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        store.dispatch(POKEMONS_FETCH)
     }
 }

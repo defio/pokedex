@@ -17,7 +17,6 @@ package com.nicoladefiorenze.pokedex.redux
 
 import com.apollographql.apollo.api.Response
 import com.nicoladefiorenze.pokedex.PokemonsQuery
-import com.nicoladefiorenze.pokedex.inject.DaggerPokemonProviderComponent
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCH
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_ERROR
 import com.nicoladefiorenze.pokedex.redux.home.POKEMONS_FETCHED_FULLFILED
@@ -29,14 +28,7 @@ import redux.api.enhancer.Middleware
 import timber.log.Timber
 import javax.inject.Inject
 
-class FetchPokemonMiddleware : Middleware<ApplicationState> {
-
-    init {
-        DaggerPokemonProviderComponent.create().inject(this)
-    }
-
-    @Inject lateinit var pokemonProvider: PokemonRemoteProvider
-
+class FetchPokemonMiddleware @Inject constructor(var pokemonProvider: PokemonRemoteProvider) : Middleware<ApplicationState> {
 
     override fun dispatch(store: Store<ApplicationState>, next: Dispatcher, action: Any): Any {
         when (action) {
@@ -58,6 +50,5 @@ class FetchPokemonMiddleware : Middleware<ApplicationState> {
         }
         return action
     }
-
 
 }

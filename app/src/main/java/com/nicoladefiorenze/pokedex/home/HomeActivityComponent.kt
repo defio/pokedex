@@ -13,11 +13,14 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.data.buisiness
+package com.nicoladefiorenze.pokedex.home
 
-enum class PokemonListState {
-    NOT_FETCHED,
-    FETCHING,
-    FETCHED_FULFILLED,
-    FETCHED_ERROR,
+import dagger.Subcomponent
+import dagger.android.AndroidInjector
+
+@Subcomponent(modules = arrayOf(HomeActivityModule::class))
+interface HomeActivityComponent : AndroidInjector<HomeActivity> {
+
+    @Subcomponent.Builder
+    abstract class Builder : AndroidInjector.Builder<HomeActivity>()
 }

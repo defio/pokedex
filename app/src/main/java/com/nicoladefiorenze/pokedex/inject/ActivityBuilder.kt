@@ -13,11 +13,23 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.data.buisiness
+package com.nicoladefiorenze.pokedex.inject
 
-enum class PokemonListState {
-    NOT_FETCHED,
-    FETCHING,
-    FETCHED_FULFILLED,
-    FETCHED_ERROR,
+import android.app.Activity
+import com.nicoladefiorenze.pokedex.home.HomeActivity
+import com.nicoladefiorenze.pokedex.home.HomeActivityComponent
+import dagger.Binds
+import dagger.Module
+import dagger.android.ActivityKey
+import dagger.android.AndroidInjector
+import dagger.multibindings.IntoMap
+
+@Module
+abstract class ActivityBuilder {
+
+    @Binds
+    @IntoMap
+    @ActivityKey(HomeActivity::class)
+    internal abstract fun bindHomeActivity(builder: HomeActivityComponent.Builder): AndroidInjector.Factory<out Activity>
+
 }

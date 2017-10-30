@@ -16,12 +16,15 @@
 package com.nicoladefiorenze.pokedex.inject
 
 import com.nicoladefiorenze.pokedex.PokeApplication
+import com.nicoladefiorenze.pokedex.inject.redux.ReduxModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 
 @Component(modules = arrayOf(AndroidInjectionModule::class,
-        AppModule::class))
+        AppModule::class,
+        ActivityBuilder::class,
+        ReduxModule::class))
 interface AppComponent : AndroidInjector<PokeApplication> {
 
     @Component.Builder
