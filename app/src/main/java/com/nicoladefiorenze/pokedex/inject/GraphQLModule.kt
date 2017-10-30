@@ -19,11 +19,13 @@ import com.apollographql.apollo.ApolloClient
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import javax.inject.Singleton
 
 @Module(includes = arrayOf(NetworkModule::class))
 class GraphQLModule {
 
     @Provides
+    @Singleton
     fun getApolloClient(okHttpClient: OkHttpClient): ApolloClient = ApolloClient.builder()
             .serverUrl(GraphQLModule.BASE_URL)
             .okHttpClient(okHttpClient)

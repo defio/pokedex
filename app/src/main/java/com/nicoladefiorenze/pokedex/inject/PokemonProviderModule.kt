@@ -19,11 +19,13 @@ import com.apollographql.apollo.ApolloClient
 import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module(includes = arrayOf(GraphQLModule::class))
 class PokemonProviderModule {
 
     @Provides
+    @Singleton
     fun getPokemonProvider(apolloClient: ApolloClient): PokemonRemoteProvider = PokemonRemoteProvider(apolloClient)
 
 }

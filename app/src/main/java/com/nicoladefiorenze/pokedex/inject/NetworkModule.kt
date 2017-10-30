@@ -19,11 +19,13 @@ import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
     @Provides
+    @Singleton
     fun okHttpClient(): OkHttpClient = OkHttpClient.Builder()
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100, TimeUnit.SECONDS)
