@@ -13,9 +13,21 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
+package com.nicoladefiorenze.pokedex.dagger
 
 import dagger.Module
+import dagger.Provides
+import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
-class HomeActivityModule
+class NetworkModule {
+
+    @Provides
+    @Singleton
+    fun okHttpClient(): OkHttpClient = OkHttpClient.Builder()
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .build()
+}

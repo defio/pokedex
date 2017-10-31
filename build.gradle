@@ -27,6 +27,7 @@ buildscript {
             'ktlint'           : '0.9.0',
             'leakcanary'       : '1.5.4',
             'reduxKotlin'      : '1.2.0',
+            'reduxRxJava2'      : '1.2.3',
     ]
     repositories {
         google()

@@ -15,16 +15,10 @@
  */
 package com.nicoladefiorenze.pokedex
 
-import com.nicoladefiorenze.pokedex.inject.DaggerAppComponent
-import com.nicoladefiorenze.pokedex.redux.ApplicationState
-import com.nicoladefiorenze.pokedex.redux.FetchPokemonMiddleware
-import com.nicoladefiorenze.pokedex.redux.Reducer
-import com.nicoladefiorenze.pokedex.redux.createLoggerMiddleware
+import com.nicoladefiorenze.pokedex.dagger.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
-import redux.applyMiddleware
-import redux.createStore
 import timber.log.Timber
 
 class PokeApplication : DaggerApplication() {
@@ -40,7 +34,6 @@ class PokeApplication : DaggerApplication() {
         }
 
         LeakCanary.install(this)
-
     }
 
     private fun plantTimber() {

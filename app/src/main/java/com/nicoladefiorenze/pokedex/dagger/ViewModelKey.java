@@ -13,20 +13,23 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
 
-import android.os.Bundle
-import com.nicoladefiorenze.pokedex.PokeActivity
-import com.nicoladefiorenze.pokedex.R
+package com.nicoladefiorenze.pokedex.dagger;
 
-class HomeActivity : PokeActivity() {
+import android.arch.lifecycle.ViewModel;
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.home_content, HomeFragment())
-                .commit()
-    }
+import dagger.MapKey;
+
+@Documented
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@MapKey
+public @interface ViewModelKey {
+    Class<? extends ViewModel> value();
 }

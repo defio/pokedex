@@ -13,22 +13,27 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
+
 package com.nicoladefiorenze.pokedex
 
 import android.arch.lifecycle.LifecycleRegistry
 import android.os.Bundle
-import dagger.android.support.DaggerAppCompatActivity
+import android.support.v4.app.Fragment
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
 
 /**
  * Base Activity class which supports LifecycleOwner and Dagger injection.
  */
-abstract class PokeActivity : DaggerAppCompatActivity() {
+abstract class PokeFragment : DaggerFragment() {
 
     private var lifecycleRegistry: LifecycleRegistry? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleRegistry = LifecycleRegistry(this)
+
     }
 
     override fun getLifecycle(): LifecycleRegistry {

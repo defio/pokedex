@@ -13,25 +13,23 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
+package com.nicoladefiorenze.pokedex.dagger
 
-import com.apollographql.apollo.ApolloClient
+import android.app.Activity
+import com.nicoladefiorenze.pokedex.home.HomeActivity
+import com.nicoladefiorenze.pokedex.home.dagger.HomeActivityComponent
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import okhttp3.OkHttpClient
-import javax.inject.Singleton
+import dagger.android.ActivityKey
+import dagger.android.AndroidInjector
+import dagger.multibindings.IntoMap
 
-@Module(includes = arrayOf(NetworkModule::class))
-class GraphQLModule {
+@Module
+abstract class ActivityBuilder {
 
-    @Provides
-    @Singleton
-    fun getApolloClient(okHttpClient: OkHttpClient): ApolloClient = ApolloClient.builder()
-            .serverUrl(GraphQLModule.BASE_URL)
-            .okHttpClient(okHttpClient)
-            .build()
+    @Binds
+    @IntoMap
+    @ActivityKey(HomeActivity::class)
+    internal abstract fun bindHomeActivity(builder: HomeActivityComponent.Builder): AndroidInjector.Factory<out Activity>
 
-    companion object {
-        private val BASE_URL = "https://graphql-pokemon.now.sh"
-    }
 }

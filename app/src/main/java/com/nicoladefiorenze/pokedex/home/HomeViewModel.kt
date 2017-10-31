@@ -13,19 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
 
-import android.content.Context
-import com.nicoladefiorenze.pokedex.PokeApplication
-import com.nicoladefiorenze.pokedex.home.HomeActivityComponent
-import dagger.Module
-import dagger.Provides
+package com.nicoladefiorenze.pokedex.home
 
-@Module(subcomponents = arrayOf(HomeActivityComponent::class))
-class AppModule {
+import android.arch.lifecycle.ViewModel
+import timber.log.Timber
+import javax.inject.Inject
 
-    @Provides
-    fun provideContext(application: PokeApplication): Context {
-        return application.applicationContext
+class HomeViewModel @Inject constructor(): ViewModel(){
+
+    init {
+        Timber.w("HomeViewModel!!!!!!!!")
     }
 }

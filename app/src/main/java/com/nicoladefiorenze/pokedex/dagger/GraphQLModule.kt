@@ -13,20 +13,25 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
+package com.nicoladefiorenze.pokedex.dagger
 
-import android.os.Bundle
-import com.nicoladefiorenze.pokedex.PokeActivity
-import com.nicoladefiorenze.pokedex.R
+import com.apollographql.apollo.ApolloClient
+import dagger.Module
+import dagger.Provides
+import okhttp3.OkHttpClient
+import javax.inject.Singleton
 
-class HomeActivity : PokeActivity() {
+@Module(includes = arrayOf(NetworkModule::class))
+class GraphQLModule {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    @Provides
+    @Singleton
+    fun getApolloClient(okHttpClient: OkHttpClient): ApolloClient = ApolloClient.builder()
+            .serverUrl(GraphQLModule.BASE_URL)
+            .okHttpClient(okHttpClient)
+            .build()
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.home_content, HomeFragment())
-                .commit()
+    companion object {
+        private val BASE_URL = "https://graphql-pokemon.now.sh"
     }
 }

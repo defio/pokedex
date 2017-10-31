@@ -13,9 +13,9 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject.redux
+package com.nicoladefiorenze.pokedex.dagger
 
-import com.nicoladefiorenze.pokedex.inject.PokemonProviderModule
+import com.nicoladefiorenze.pokedex.dagger.PokemonProviderModule
 import com.nicoladefiorenze.pokedex.redux.ApplicationState
 import com.nicoladefiorenze.pokedex.redux.FetchPokemonMiddleware
 import com.nicoladefiorenze.pokedex.redux.Reducer

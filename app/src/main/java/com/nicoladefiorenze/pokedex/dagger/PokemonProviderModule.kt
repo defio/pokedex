@@ -13,14 +13,19 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
+package com.nicoladefiorenze.pokedex.dagger
 
-import dagger.Subcomponent
-import dagger.android.AndroidInjector
+import com.apollographql.apollo.ApolloClient
+import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
-@Subcomponent(modules = arrayOf(HomeActivityModule::class))
-interface HomeActivityComponent : AndroidInjector<HomeActivity> {
+@Module(includes = arrayOf(GraphQLModule::class))
+class PokemonProviderModule {
 
-    @Subcomponent.Builder
-    abstract class Builder : AndroidInjector.Builder<HomeActivity>()
+    @Provides
+    @Singleton
+    fun getPokemonProvider(apolloClient: ApolloClient): PokemonRemoteProvider = PokemonRemoteProvider(apolloClient)
+
 }

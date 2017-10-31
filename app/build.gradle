@@ -108,6 +108,7 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leakcanary}"
 
     implementation "com.github.pardom:redux-kotlin:${versions.reduxKotlin}"
+    implementation "com.github.pardom.redux-rxjava:redux-rxjava2:${versions.reduxRxJava2}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.1', {

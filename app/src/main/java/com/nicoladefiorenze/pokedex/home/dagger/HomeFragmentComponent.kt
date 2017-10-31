@@ -13,23 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
 
-import com.nicoladefiorenze.pokedex.PokeApplication
-import com.nicoladefiorenze.pokedex.inject.redux.ReduxModule
-import dagger.Component
-import dagger.android.AndroidInjectionModule
+package com.nicoladefiorenze.pokedex.home.dagger
+
+import com.nicoladefiorenze.pokedex.home.HomeFragment
+import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import javax.inject.Singleton
 
-@Component(modules = arrayOf(AndroidInjectionModule::class,
-        AppModule::class,
-        ActivityBuilder::class,
-        ReduxModule::class))
-@Singleton
-interface AppComponent : AndroidInjector<PokeApplication> {
+@Subcomponent(modules = arrayOf(HomeFragmentModule::class))
+interface HomeFragmentComponent : AndroidInjector<HomeFragment> {
 
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<PokeApplication>()
-
+    @Subcomponent.Builder
+    abstract class Builder : AndroidInjector.Builder<HomeFragment>()
 }

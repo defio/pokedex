@@ -13,20 +13,23 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
 
-import android.os.Bundle
-import com.nicoladefiorenze.pokedex.PokeActivity
-import com.nicoladefiorenze.pokedex.R
+package com.nicoladefiorenze.pokedex.home.dagger
 
-class HomeActivity : PokeActivity() {
+import android.support.v4.app.Fragment
+import com.nicoladefiorenze.pokedex.home.HomeFragment
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+import dagger.Binds
+import dagger.Module
+import dagger.android.AndroidInjector
+import dagger.android.support.FragmentKey
+import dagger.multibindings.IntoMap
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.home_content, HomeFragment())
-                .commit()
-    }
+@Module
+abstract class HomeActivityFragmentsProvider {
+
+    @Binds
+    @IntoMap
+    @FragmentKey(HomeFragment::class)
+    internal abstract fun provideHomeFragmentFactory(builder: HomeFragmentComponent.Builder): AndroidInjector.Factory<out Fragment>
 }

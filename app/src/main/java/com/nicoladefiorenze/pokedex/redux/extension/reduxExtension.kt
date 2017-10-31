@@ -13,20 +13,15 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.home
 
-import android.os.Bundle
-import com.nicoladefiorenze.pokedex.PokeActivity
-import com.nicoladefiorenze.pokedex.R
+package com.nicoladefiorenze.pokedex.redux.extension
 
-class HomeActivity : PokeActivity() {
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.LiveDataReactiveStreams
+import io.reactivex.BackpressureStrategy
+import redux.api.Store
+import redux.asObservable
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.home_content, HomeFragment())
-                .commit()
-    }
+fun <S : Any> Store<S>.asLiveData(): LiveData<S> {
+    return  LiveDataReactiveStreams.fromPublisher(this.asObservable().toFlowable(BackpressureStrategy.BUFFER))
 }

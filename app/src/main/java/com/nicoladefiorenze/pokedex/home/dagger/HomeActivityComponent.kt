@@ -13,21 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
+package com.nicoladefiorenze.pokedex.home.dagger
 
-import dagger.Module
-import dagger.Provides
-import okhttp3.OkHttpClient
-import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
+import com.nicoladefiorenze.pokedex.home.HomeActivity
+import dagger.Subcomponent
+import dagger.android.AndroidInjector
 
-@Module
-class NetworkModule {
+@Subcomponent(modules = arrayOf(HomeActivityModule::class,
+        HomeActivityFragmentsProvider::class))
+interface HomeActivityComponent : AndroidInjector<HomeActivity> {
 
-    @Provides
-    @Singleton
-    fun okHttpClient(): OkHttpClient = OkHttpClient.Builder()
-            .connectTimeout(100, TimeUnit.SECONDS)
-            .readTimeout(100, TimeUnit.SECONDS)
-            .build()
+    @Subcomponent.Builder
+    abstract class Builder : AndroidInjector.Builder<HomeActivity>()
 }

@@ -13,19 +13,20 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.nicoladefiorenze.pokedex.inject
+package com.nicoladefiorenze.pokedex.dagger
 
-import com.apollographql.apollo.ApolloClient
-import com.nicoladefiorenze.pokedex.remote.PokemonRemoteProvider
+import android.content.Context
+import com.nicoladefiorenze.pokedex.PokeApplication
+import com.nicoladefiorenze.pokedex.home.dagger.HomeActivityComponent
+import com.nicoladefiorenze.pokedex.home.dagger.ViewModelModule
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
-@Module(includes = arrayOf(GraphQLModule::class))
-class PokemonProviderModule {
+@Module(subcomponents = arrayOf(HomeActivityComponent::class), includes = arrayOf(ViewModelModule::class))
+class AppModule {
 
     @Provides
-    @Singleton
-    fun getPokemonProvider(apolloClient: ApolloClient): PokemonRemoteProvider = PokemonRemoteProvider(apolloClient)
-
+    fun provideContext(application: PokeApplication): Context {
+        return application.applicationContext
+    }
 }
